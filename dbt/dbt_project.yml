@@ -1,0 +1,27 @@
+name: 'hw_9_dbt_full'
+version: '1.0'
+config-version: 2
+
+model-paths: ['models']
+macro-paths: ['macros']
+seed-paths: ['seeds']
+test-paths: ['tests']
+target-path: 'target'
+clean-targets:
+  - 'target'
+  - 'dbt_modules'
+  - 'logs'
+
+models:
+  hw_9_dbt_full:
+    +materialized: table
+    staging:
+      +schema: staging
+      +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
+
+vars:
+  low_bound: 50
+  medium_bound: 300
